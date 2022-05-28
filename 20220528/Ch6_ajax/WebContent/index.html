@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+<script>
+	function test1(){
+		console.log("click!");
+	}
+	function loginActAndPwd(){
+	   let account = document.getElementById("actId").value;
+	   let pwd = document.getElementById("pwdId").value;
+	   let msg = document.getElementById("msg");
+	   console.log("page1?act="+account+"&pwd="+pwd)
+	   fetch("page1?act="+account+"&pwd="+pwd,{method:"get"}).then(resp=>{
+		   
+		   return resp.text();
+	   }).then(text=>{
+		   console.log(text);
+		   msg.innerText = text;
+	   });
+	}
+	
+</script>
+
+</head>
+<body>
+	<form action="page1">
+		<input name="act" id="actId" placeholder="帳號"><br>
+		<input name="pwd" id="pwdId" placeholder="密碼"><br>
+		<button type="button"  onclick="loginActAndPwd()">登入</button>
+	</form>
+	<div id="msg"></div>
+</body>
+</html>
